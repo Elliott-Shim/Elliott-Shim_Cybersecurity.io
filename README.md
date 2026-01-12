@@ -56,7 +56,7 @@ cat ./"--spaces in the filename--"
 
 This corrects prints the contents of the file to the console.
 
-### Level 2 -> Level 3
+### Level 3 -> Level 4
 
 **Objective:** Locate password in a hidden file in the inhere directory.
 
