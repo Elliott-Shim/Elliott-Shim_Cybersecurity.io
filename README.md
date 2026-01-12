@@ -26,7 +26,7 @@ When prompted, enter the password bandit0.
 readme
 ```
 
-It is clear that the readme file is located in the current directory. Using `cat` we can print out the contents of the readme file into the console. This reveals the password to be: `ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If`. Use this password to ssh into bandit1, using the same port as in level 0.
+It is clear that the readme file is located in the current directory. Using `cat` we can print out the contents of the readme file into the console, revealing the password. Use this password to ssh into bandit1, using the same port as in level 0.
 
 ### Level 1 -> Level 2
 
@@ -34,10 +34,10 @@ It is clear that the readme file is located in the current directory. Using `cat
 
 **Solution** Attempting to directly use the `cat` command to print out the contents of the `-` file will result in the terminal hanging as the `-` is misinterpreted as a command or a flag. This can be solved by prepending `./` to the filename, which allows for files with filenames beginning with `-` to be correctly interfaced with.
 
-The command:
+Using:
 
 ```
 cat ./-
 ```
 
-Reveals the password to be: 263JGJPfgU6LtdEvgfWU1XP5yac29mFx
+The contents of the `-` file are correctly printed to the console.
