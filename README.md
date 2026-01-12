@@ -73,3 +73,16 @@ ls -a
 ```
 
 Use `cat` on the revealed file to obtain the password.
+
+### Level 4 -> Level 5
+
+**Objective:** Locate the password in the only human-readable file in the inhere directory.
+
+**Solution:** Again, navigate to the `inhere` directory. Using `ls` brings up a list of all the files that need to be checked. While each file can be checked individually, the `file` command can be used to determine the exact file needed in a single search. To do this, the wildcard operator `*` can be leveraged to search every file in the directory.
+
+Keeping in mind that each file starts with a `-`, the command:
+
+```
+file ./*
+```
+Will classify every file. The human-readable file is the ASCII text file, and using `cat` on it will reveal the password.
