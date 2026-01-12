@@ -1,4 +1,4 @@
-# 
+# Elliott's Cybersecurity Projects and Writeups
 
 ## OverTheWire: Bandit Writeups
 
