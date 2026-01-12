@@ -55,3 +55,21 @@ cat ./"--spaces in the filename--"
 ```
 
 This corrects prints the contents of the file to the console.
+
+### Level 2 -> Level 3
+
+**Objective:** Locate password in a hidden file in the inhere directory.
+
+**Solution:** Use the `cd` command to change the directory to the `inhere` directory.
+
+```
+cd inhere
+```
+
+Using the `ls` command in the `inhere` directory, no files are revealed. This is solved by using the `-a` flag, which reveals all files in a directory, including hidden files.
+
+```
+ls -a
+```
+
+Use `cat` on the revealed file to obtain the password.
