@@ -86,3 +86,55 @@ Keeping in mind that each file starts with a `-`, the command:
 file ./*
 ```
 Will classify every file. The human-readable file is the ASCII text file, and using `cat` on it will reveal the password.
+
+### Level 5 -> Level 6
+
+**Objective:** Locate the password in a file under the inhere directory that has all of the following properties:
+
+human-readable
+1033 bytes in size
+not executable
+
+**Solution:** To find files that meet all three criteria, a somewhat complicated `find` command is used.
+
+The first section of this `find` command:
+
+```
+find . -type f
+```
+
+finds every file in the current directory and its subdirectories(which is in fact where all the files are).
+
+The second section uses the flag `-size` to filter for any files of a selected size. As the desired size is provided in Bytes, the correct suffix for the size option is c.
+
+```
+-size 1033c
+```
+
+The third section uses the flag `-executable` and the operator `!`. The `-executable` flag filters for files that are executable. The `!` operator negates the condition set by the `-executable` flag, changing the filter such that it instead selects files that are not executable.
+
+```
+! -executable
+```
+
+The final section involves the use of `exec` and `grep`. `exec` is used to execute a `file` command on the filtered files. `{}` is a placeholder variable that represents the files filtered so far(e.g. file1 file2 etc.). The `+` operator is used to increase the efficiency of the command by processing all files at once rather than one at a time. The `|` pipe operator is then used to send the results to the `grep` command.
+
+```
+-exec file {} + |
+```
+
+The `grep` command searches each line of the results, searching for a match to the string provided to it. The output contains only lines which contain "ASCII text".
+
+```
+grep "ASCII text"
+```
+
+The placement of the `exec` action at the end of the `find` command is intentional. The flags before this section require access to file attributes, but after the `exec` action those files have already left the `find` command, leaving the flags no way of evaluating the files. Had the `exec` action come before those flags, the execution chain would have been broken.
+
+Together, the full command is:
+
+```
+find . -type f -size 1033c ! -executable -exec file {} + | grep "ASCII text"
+```
+
+This should leave only one file that fulfills all three criteria. Read the contents of the file to retrieve the password.
