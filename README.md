@@ -138,3 +138,21 @@ find . -type f -size 1033c ! -executable -exec file {} + | grep "ASCII text"
 ```
 
 This should leave only one file that fulfills all three criteria. Read the contents of the file to retrieve the password.
+
+### Level 6 -> Level 7
+
+<!-- Password: HWasnPhtq9AVKe0dmk45nxy20cvUa6EG -->
+
+**Objective:** Find the password located somewhere in the server. The file containing the password has the properties:
+
+owned by user bandit7
+owned by group bandit6
+33 bytes in size
+
+**Solution:** Again, this can be done using `find`. The `user` flag will find files owned by the target user, and the `group` flag will find files owned by the target group. Combining the `size` flag from the previous exercise, and by starting the search from the home directory by using `/`, the entire server can be searched for the password holding file. As the user bandit6 lacks the permission to read many files in the server, the results of the search will be polluted by a large number of permission denied messages. To clean up the search, `2>/dev/null` can be used to redirect all error messages(2 represents stderr and the error messages) into `/dev/null`, where they are deleted. Also, in order to ensure that only files are returned use the `type` flag with a value of f.
+
+```
+find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/null
+```
+
+Retrieve the password from the resulting file.
