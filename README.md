@@ -172,3 +172,9 @@ To avoid an excess of lines of text showing on the console, the `head` command c
 **Objective:** Find password stored in data.txt in one of the few human-readable strings, preceded by several "=" characters.
 
 **Solution:** The file largely consists of unreadable data. To retrieve only the readable sections, use the `strings` command on `data.txt` to retrieve all the human-readable text. Using the hint that the password is preceded by several "=" characters, use `grep` to search for strings that contain 2 or more "=" characters. Even just searching using the string `"=="` should be sufficient. This will bring up the lines needed to find the password.
+
+### Level 10 -> 11
+
+**Objective:** Find password stored in data.txt, which contains base64 encoded data.
+
+**Solution:** The `data.txt` file consists of a single line of base64 encoded data. Use `cat` to retrieve the text from the file. Use the pipe operator to send that text to the `base64` command to be decoded using the `-d` flag.
