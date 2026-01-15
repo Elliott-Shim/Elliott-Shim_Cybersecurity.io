@@ -163,6 +163,12 @@ Retrieve the password from the resulting file.
 
 **Objective:** Find password stored in data.txt in the line that only occurs once.
 
-**Solution:** Use the `sort` command to sort data.txt and gather line duplicates together. Pipe the result in `uniq` with the `-c` to delete duplicates and to count the number of times each line of text appears. Conduct another `sort` with the flag `-n` to sort the results numerically, with the lowest integer on top. This will bring the line that only occurs once to the top of the results. To execute these commands in sequence, make sure to use the pipe operator `|` in between each step.
+**Solution:** Use the `sort` command to sort data.txt and gather line duplicates together. Pipe the result into the `uniq` command with the `-c` flag to delete duplicates and to count the number of times each line of text appears. Conduct another `sort` with the flag `-n` to sort the results numerically, with the lowest integer on top. This will bring the line that only occurs once to the top of the results.
 
 To avoid an excess of lines of text showing on the console, the `head` command can be used with the flag `-n` with a value `1` to limit the output to 1 line of text.
+
+### Level 9 -> 10
+
+**Objective:** Find password stored in data.txt in one of the few human-readable strings, preceded by several "=" characters.
+
+**Solution:** The file largely consists of unreadable data. To retrieve only the readable sections, use the `strings` command on `data.txt` to retrieve all the human-readable text. Using the hint that the password is preceded by several "=" characters, use `grep` to search for strings that contain 2 or more "=" characters. Even just searching using the string `"=="` should be sufficient. This will bring up the lines needed to find the password.
