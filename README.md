@@ -90,9 +90,9 @@ Will classify every file. The human-readable file is the ASCII text file, and us
 ### Level 5 -> Level 6
 
 **Objective:** Locate the password in a file under the inhere directory that has all of the following properties:
--human-readable
--1033 bytes in size
--not executable
+- human-readable
+- 1033 bytes in size
+- not executable
 
 **Solution:** To find files that meet all three criteria, a somewhat complicated `find` command is used.
 
@@ -140,12 +140,10 @@ This should leave only one file that fulfills all three criteria. Read the conte
 
 ### Level 6 -> Level 7
 
-<!-- Password: HWasnPhtq9AVKe0dmk45nxy20cvUa6EG -->
-
 **Objective:** Find the password located somewhere in the server. The file containing the password has the properties:
--owned by user bandit7
--owned by group bandit6
--33 bytes in size
+- owned by user bandit7
+- owned by group bandit6
+- 33 bytes in size
 
 **Solution:** Again, this can be done using `find`. The `user` flag will find files owned by the target user, and the `group` flag will find files owned by the target group. Combining the `size` flag from the previous exercise, and by starting the search from the home directory by using `/`, the entire server can be searched for the password holding file. As the user bandit6 lacks the permission to read many files in the server, the results of the search will be polluted by a large number of permission denied messages. To clean up the search, `2>/dev/null` can be used to redirect all error messages(2 represents stderr and the error messages) into `/dev/null`, where they are deleted. Also, in order to ensure that only files are returned use the `type` flag with a value of f.
 
@@ -154,3 +152,9 @@ find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/null
 ```
 
 Retrieve the password from the resulting file.
+
+### Level 7 -> 8
+
+**Objective:** Find password stored in data.txt next to the word millionth
+
+**Solution:** Viewing the `data.txt` file reveals that each line consists of a pair of words and passwords. Searching for a line with the word `millionth` will then also reveal the password. Use the `grep` command to search for `millionth` in the `data.txt` file to show the answer.
