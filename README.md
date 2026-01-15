@@ -158,3 +158,11 @@ Retrieve the password from the resulting file.
 **Objective:** Find password stored in data.txt next to the word millionth
 
 **Solution:** Viewing the `data.txt` file reveals that each line consists of a pair of words and passwords. Searching for a line with the word `millionth` will then also reveal the password. Use the `grep` command to search for `millionth` in the `data.txt` file to show the answer.
+
+### Level 8 -> 9
+
+**Objective:** Find password stored in data.txt in the line that only occurs once.
+
+**Solution:** Use the `sort` command to sort data.txt and gather line duplicates together. Pipe the result in `uniq` with the `-c` to delete duplicates and to count the number of times each line of text appears. Conduct another `sort` with the flag `-n` to sort the results numerically, with the lowest integer on top. This will bring the line that only occurs once to the top of the results. To execute these commands in sequence, make sure to use the pipe operator `|` in between each step.
+
+To avoid an excess of lines of text showing on the console, the `head` command can be used with the flag `-n` with a value `1` to limit the output to 1 line of text.
