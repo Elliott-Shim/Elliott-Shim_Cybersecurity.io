@@ -178,3 +178,15 @@ To avoid an excess of lines of text showing on the console, the `head` command c
 **Objective:** Find password stored in data.txt, which contains base64 encoded data.
 
 **Solution:** The `data.txt` file consists of a single line of base64 encoded data. Use `cat` to retrieve the text from the file. Use the pipe operator to send that text to the `base64` command to be decoded using the `-d` flag.
+
+### Level 11 -> 12
+
+**Objective:** Find the password stored in data.txt, where all lowercase and uppercase letters have been rotated by 13 positions.
+
+**Solution:** The rotation of letters by 13 positions is called a ROT13 cipher. To undo this cipher, the `tr` command can be used. This command replaces or deletes characters, and does so by mapping characters from a source set to a target set. Whatever is placed in position 1 in the source set will be replaced by what is placed in position 1 in the target set. This can be used to decipher the ROT13 by mapping each encrypted character to its decrypted counterpart. In the case of the ROT13 cipher, characters `a-z` should be mapped to characters`n-za-m`. The lowercase and uppercase sets should be combined in the complete `tr` command.
+
+```
+tr 'A-Za-z' 'N-ZA-Mn-za-m'
+```
+
+Use `cat` to retrieve the encrypted data from `data.txt`, then pipe it into the `tr` command to decrypt the password.
