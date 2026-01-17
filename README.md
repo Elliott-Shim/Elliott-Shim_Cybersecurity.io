@@ -16,6 +16,8 @@ ssh bandit0@bandit.labs.overthewire.org -p 2220
 
 When prompted, enter the password bandit0.
 
+---
+
 ### Level 0 -> Level 1
 
 **Objective:** Locate password stored in readme. Use password to log into bandit1 through ssh.
@@ -27,6 +29,8 @@ readme
 ```
 
 It is clear that the readme file is located in the current directory. Using `cat` we can print out the contents of the readme file into the console, revealing the password. Use this password to ssh into bandit1, using the same port as in level 0.
+
+---
 
 ### Level 1 -> Level 2
 
@@ -42,6 +46,8 @@ cat ./-
 
 The contents of the `-` file are correctly printed to the console.
 
+---
+
 ### Level 2 -> Level 3
 
 **Objective:** Locate password in a file called `--spaces in this filename--`.
@@ -55,6 +61,8 @@ cat ./"--spaces in the filename--"
 ```
 
 This corrects prints the contents of the file to the console.
+
+---
 
 ### Level 3 -> Level 4
 
@@ -74,6 +82,8 @@ ls -a
 
 Use `cat` on the revealed file to obtain the password.
 
+---
+
 ### Level 4 -> Level 5
 
 **Objective:** Locate the password in the only human-readable file in the inhere directory.
@@ -86,6 +96,8 @@ Keeping in mind that each file starts with a `-`, the command:
 file ./*
 ```
 Will classify every file. The human-readable file is the ASCII text file, and using `cat` on it will reveal the password.
+
+---
 
 ### Level 5 -> Level 6
 
@@ -138,6 +150,8 @@ find . -type f -size 1033c ! -executable -exec file {} + | grep "ASCII text"
 
 This should leave only one file that fulfills all three criteria. Read the contents of the file to retrieve the password.
 
+---
+
 ### Level 6 -> Level 7
 
 **Objective:** Find the password located somewhere in the server. The file containing the password has the properties:
@@ -153,11 +167,15 @@ find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/null
 
 Retrieve the password from the resulting file.
 
+--=-
+
 ### Level 7 -> 8
 
 **Objective:** Find password stored in data.txt next to the word millionth
 
 **Solution:** Viewing the `data.txt` file reveals that each line consists of a pair of words and passwords. Searching for a line with the word `millionth` will then also reveal the password. Use the `grep` command to search for `millionth` in the `data.txt` file to show the answer.
+
+---
 
 ### Level 8 -> 9
 
@@ -166,6 +184,8 @@ Retrieve the password from the resulting file.
 **Solution:** Use the `sort` command to sort data.txt and gather line duplicates together. Pipe the result into the `uniq` command with the `-c` flag to delete duplicates and to count the number of times each line of text appears. Conduct another `sort` with the flag `-n` to sort the results numerically, with the lowest integer on top. This will bring the line that only occurs once to the top of the results.
 
 To avoid an excess of lines of text showing on the console, the `head` command can be used with the flag `-n` with a value `1` to limit the output to 1 line of text.
+
+---
 
 ### Level 9 -> 10
 
@@ -178,6 +198,8 @@ To avoid an excess of lines of text showing on the console, the `head` command c
 **Objective:** Find password stored in data.txt, which contains base64 encoded data.
 
 **Solution:** The `data.txt` file consists of a single line of base64 encoded data. Use `cat` to retrieve the text from the file. Use the pipe operator to send that text to the `base64` command to be decoded using the `-d` flag.
+
+---
 
 ### Level 11 -> 12
 
